@@ -12,10 +12,9 @@ main! = \_args ->
     even = 1
     
     foo = List.walk dir_list { file: [], dir: [] } \state, elem ->
-        when File.is_file! elem is
-        Result Ok ->
+        if File.is_file! elem then
             { state & file: List.append state.file elem }
-        Result Err ->
+        else
             { state & dir: List.append state.dir elem }
 
     
